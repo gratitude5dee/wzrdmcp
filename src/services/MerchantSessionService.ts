@@ -52,17 +52,18 @@ export class MerchantSessionService {
     }
   }
 
-  private createSession(sessionId = randomUUID()): MerchantSession {
+  private createSession(sessionId?: string): MerchantSession {
+    const id = sessionId ?? randomUUID();
     const now = new Date();
     const expires = new Date(now.getTime() + this.sessionTtlMs);
     const session: MerchantSession = {
-      session_id: sessionId,
+      session_id: id,
       line_items: [],
       status: 'active',
       created_at: now.toISOString(),
       expires_at: expires.toISOString(),
     };
-    this.sessions.set(sessionId, session);
+    this.sessions.set(id, session);
     return session;
   }
 

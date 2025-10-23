@@ -14,8 +14,14 @@ const MAX_TIMESTAMP_SKEW_MS = 5 * 60 * 1000;
 
 export function authenticationMiddleware(req: Request, res: Response, next: NextFunction) {
   try {
+    // Check for Authorization header first to return 401 for missing auth
+    const authHeader = req.header('authorization');
+    if (!authHeader) {
+      throw createACPError('invalid_request', 'unauthorized', 'Authorization header is required', undefined, req.header('request-id'));
+    }
+
     const headers = {
-      Authorization: req.header('authorization') ?? '',
+      Authorization: authHeader,
       'Content-Type': (req.header('content-type') as 'application/json') ?? 'application/json',
       'API-Version': (req.header('api-version') as '2025-09-29') ?? '2025-09-29',
       'Accept-Language': req.header('accept-language') ?? undefined,
