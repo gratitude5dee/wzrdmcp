@@ -63,6 +63,24 @@ import * as fal_ai__wan_22_vace_fun_a14b__depth from './generated/video-to-video
 import * as fal_ai__wan_22_vace_fun_a14b__pose from './generated/video-to-video/fal-ai__wan-22-vace-fun-a14b__pose.ts';
 import * as perceptron__isaac_01 from './generated/vision/perceptron__isaac-01.ts';
 
+// speech-to-text
+import * as fal_ai__whisperx__transcribe from './generated/speech-to-text/fal-ai__whisperx__transcribe.ts';
+import * as fal_ai__whisperx__diarize from './generated/speech-to-text/fal-ai__whisperx__diarize.ts';
+import * as fal_ai__whisper__large_v3 from './generated/speech-to-text/fal-ai__whisper__large-v3.ts';
+import * as deepgram__nova_2__transcribe from './generated/speech-to-text/deepgram__nova-2__transcribe.ts';
+import * as assemblyai__universal_2__transcribe from './generated/speech-to-text/assemblyai__universal-2__transcribe.ts';
+
+// 3D
+import * as tripo_ai__tripoSR__text_to_3d from './generated/text-to-3d/tripo-ai__tripoSR__text-to-3d.ts';
+import * as openai__shap_e__text_to_3d from './generated/text-to-3d/openai__shap-e__text-to-3d.ts';
+import * as threestudio__dreamfusion from './generated/text-to-3d/threestudio__dreamfusion.ts';
+import * as luma__nerf__image_to_3d from './generated/image-to-3d/luma__nerf__image-to-3d.ts';
+
+// audio-to-video
+import * as sadtalker__talking_head from './generated/audio-to-video/sadtalker__talking-head.ts';
+import * as wav2lip__lip_sync from './generated/audio-to-video/wav2lip__lip-sync.ts';
+import * as animate_anyone__audio_drive from './generated/audio-to-video/animate-anyone__audio-drive.ts';
+
 type Runner = (customInput?: Record<string, unknown>) => Promise<unknown>;
 
 const registry = new Map<string, Runner>([
@@ -128,6 +146,24 @@ const registry = new Map<string, Runner>([
     ['fal-ai/wan-22-vace-fun-a14b/inpainting', fal_ai__wan_22_vace_fun_a14b__inpainting.run], // video-to-video
     ['fal-ai/wan-22-vace-fun-a14b/depth', fal_ai__wan_22_vace_fun_a14b__depth.run], // video-to-video
     ['fal-ai/wan-22-vace-fun-a14b/pose', fal_ai__wan_22_vace_fun_a14b__pose.run], // video-to-video
+    // speech-to-text
+    ['fal-ai/whisperx/transcribe', fal_ai__whisperx__transcribe.run],
+    ['fal-ai/whisperx/diarize', fal_ai__whisperx__diarize.run],
+    ['fal-ai/whisper/large-v3', fal_ai__whisper__large_v3.run],
+    ['deepgram/nova-2/transcribe', deepgram__nova_2__transcribe.run],
+    ['assemblyai/universal-2/transcribe', assemblyai__universal_2__transcribe.run],
+
+    // 3D
+    ['tripo-ai/tripoSR/text-to-3d', tripo_ai__tripoSR__text_to_3d.run],
+    ['openai/shap-e/text-to-3d', openai__shap_e__text_to_3d.run],
+    ['threestudio/dreamfusion', threestudio__dreamfusion.run],
+    ['luma/nerf/image-to-3d', luma__nerf__image_to_3d.run],
+
+    // audio-to-video
+    ['sadtalker/talking-head', sadtalker__talking_head.run],
+    ['wav2lip/lip-sync', wav2lip__lip_sync.run],
+    ['animate-anyone/audio-drive', animate_anyone__audio_drive.run],
+
     ['perceptron/isaac-01', perceptron__isaac_01.run] // vision
 ]);
 
