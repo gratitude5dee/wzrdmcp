@@ -1,0 +1,26 @@
+version: '3.8'
+services:
+  mcp-server:
+    build: .
+    ports:
+      - "3112:3112"
+    environment:
+      PORT: 3112
+      NODE_ENV: production
+      MERCHANT_BASE_URL: http://merchant:3000
+      MERCHANT_API_KEY: merchant_key
+      PSP_BASE_URL: http://psp:4000
+      PSP_API_KEY: psp_key
+      ALLOWED_API_KEYS: merchant_key
+      SIGNATURE_SECRET: dev_secret
+    depends_on:
+      - merchant
+      - psp
+  merchant:
+    image: ghcr.io/example/merchant-mock:latest
+    ports:
+      - "3000:3000"
+  psp:
+    image: ghcr.io/example/psp-mock:latest
+    ports:
+      - "4000:4000"
