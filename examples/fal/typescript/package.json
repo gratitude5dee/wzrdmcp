@@ -5,7 +5,7 @@
   "version": "0.1.0",
   "scripts": {
     "build": "tsc -p tsconfig.json --noEmit",
-    "examples": "ts-node src/index.ts",
+    "examples": "node --loader ts-node/esm src/index.ts",
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "dependencies": {
