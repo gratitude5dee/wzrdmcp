@@ -50,6 +50,18 @@ import * as fal_ai__video_understanding from './generated/vision/fal-ai__video-u
 import * as fal_ai__any_llm from './generated/llm/fal-ai__any-llm.ts';
 import * as fal_ai__any_llm__enterprise from './generated/llm/fal-ai__any-llm__enterprise.ts';
 import * as fal_ai__lynx from './generated/image-to-video/fal-ai__lynx.ts';
+import * as fal_ai__image_apps_v2__relighting from './generated/image-to-image/fal-ai__image-apps-v2__relighting.ts';
+import * as fal_ai__image_apps_v2__style_transfer from './generated/image-to-image/fal-ai__image-apps-v2__style-transfer.ts';
+import * as fal_ai__image_apps_v2__photo_restoration from './generated/image-to-image/fal-ai__image-apps-v2__photo-restoration.ts';
+import * as fal_ai__image_apps_v2__portrait_enhance from './generated/image-to-image/fal-ai__image-apps-v2__portrait-enhance.ts';
+import * as fal_ai__image_apps_v2__photography_effects from './generated/image-to-image/fal-ai__image-apps-v2__photography-effects.ts';
+import * as fal_ai__image_apps_v2__perspective from './generated/image-to-image/fal-ai__image-apps-v2__perspective.ts';
+import * as fal_ai__wan_22_vace_fun_a14b__reframe from './generated/video-to-video/fal-ai__wan-22-vace-fun-a14b__reframe.ts';
+import * as fal_ai__wan_22_vace_fun_a14b__outpainting from './generated/video-to-video/fal-ai__wan-22-vace-fun-a14b__outpainting.ts';
+import * as fal_ai__wan_22_vace_fun_a14b__inpainting from './generated/video-to-video/fal-ai__wan-22-vace-fun-a14b__inpainting.ts';
+import * as fal_ai__wan_22_vace_fun_a14b__depth from './generated/video-to-video/fal-ai__wan-22-vace-fun-a14b__depth.ts';
+import * as fal_ai__wan_22_vace_fun_a14b__pose from './generated/video-to-video/fal-ai__wan-22-vace-fun-a14b__pose.ts';
+import * as perceptron__isaac_01 from './generated/vision/perceptron__isaac-01.ts';
 
 type Runner = (customInput?: Record<string, unknown>) => Promise<unknown>;
 
@@ -104,7 +116,19 @@ const registry = new Map<string, Runner>([
     ['fal-ai/video-understanding', fal_ai__video_understanding.run], // vision
     ['fal-ai/any-llm', fal_ai__any_llm.run], // llm
     ['fal-ai/any-llm/enterprise', fal_ai__any_llm__enterprise.run], // llm
-    ['fal-ai/lynx', fal_ai__lynx.run] // image-to-video
+    ['fal-ai/lynx', fal_ai__lynx.run], // image-to-video
+    ['fal-ai/image-apps-v2/relighting', fal_ai__image_apps_v2__relighting.run], // image-to-image
+    ['fal-ai/image-apps-v2/style-transfer', fal_ai__image_apps_v2__style_transfer.run], // image-to-image
+    ['fal-ai/image-apps-v2/photo-restoration', fal_ai__image_apps_v2__photo_restoration.run], // image-to-image
+    ['fal-ai/image-apps-v2/portrait-enhance', fal_ai__image_apps_v2__portrait_enhance.run], // image-to-image
+    ['fal-ai/image-apps-v2/photography-effects', fal_ai__image_apps_v2__photography_effects.run], // image-to-image
+    ['fal-ai/image-apps-v2/perspective', fal_ai__image_apps_v2__perspective.run], // image-to-image
+    ['fal-ai/wan-22-vace-fun-a14b/reframe', fal_ai__wan_22_vace_fun_a14b__reframe.run], // video-to-video
+    ['fal-ai/wan-22-vace-fun-a14b/outpainting', fal_ai__wan_22_vace_fun_a14b__outpainting.run], // video-to-video
+    ['fal-ai/wan-22-vace-fun-a14b/inpainting', fal_ai__wan_22_vace_fun_a14b__inpainting.run], // video-to-video
+    ['fal-ai/wan-22-vace-fun-a14b/depth', fal_ai__wan_22_vace_fun_a14b__depth.run], // video-to-video
+    ['fal-ai/wan-22-vace-fun-a14b/pose', fal_ai__wan_22_vace_fun_a14b__pose.run], // video-to-video
+    ['perceptron/isaac-01', perceptron__isaac_01.run] // vision
 ]);
 
 function help() {
