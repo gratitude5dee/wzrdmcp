@@ -1,10 +1,17 @@
 import crypto from 'crypto';
+import type { OutgoingHttpHeaders } from 'http';
 import { createACPError } from '../types/acp.js';
+
+export interface IdempotencyCachedResponse {
+  status: number;
+  body: unknown;
+  headers: OutgoingHttpHeaders;
+}
 
 interface IdempotencyEntry {
   key: string;
   paramsHash: string;
-  response: unknown;
+  response: IdempotencyCachedResponse;
   expiresAt: number;
 }
 
@@ -22,7 +29,10 @@ export class IdempotencyService {
     return crypto.createHash('sha256').update(canonical).digest('hex');
   }
 
-  async check(idempotencyKey: string, params: unknown): Promise<unknown | null> {
+  async check(
+    idempotencyKey: string,
+    params: unknown
+  ): Promise<IdempotencyCachedResponse | null> {
     const entry = this.cache.get(idempotencyKey);
     if (!entry) {
       return null;
@@ -47,7 +57,11 @@ export class IdempotencyService {
     return entry.response;
   }
 
-  async store(idempotencyKey: string, params: unknown, response: unknown): Promise<void> {
+  async store(
+    idempotencyKey: string,
+    params: unknown,
+    response: IdempotencyCachedResponse
+  ): Promise<void> {
     const paramsHash = this.hashParams(params);
     const expiresAt = Date.now() + this.ttlMs;
     this.cache.set(idempotencyKey, {

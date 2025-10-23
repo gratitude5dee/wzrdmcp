@@ -19,13 +19,25 @@ export function createIdempotencyMiddleware(service: IdempotencyService) {
 
       const cached = await service.check(idempotencyKey, params);
       if (cached) {
-        return res.status(200).json(cached);
+        res.status(cached.status);
+        for (const [header, value] of Object.entries(cached.headers)) {
+          if (value !== undefined) {
+            const headerValue = value as Parameters<typeof res.setHeader>[1];
+            res.setHeader(header, headerValue);
+          }
+        }
+        return res.json(cached.body);
       }
 
       const originalJson = res.json.bind(res);
       res.json = (body: unknown) => {
-        void service.store(idempotencyKey, params, body);
-        return originalJson(body);
+        const jsonResponse = originalJson(body);
+        void service.store(idempotencyKey, params, {
+          status: res.statusCode,
+          body,
+          headers: res.getHeaders(),
+        });
+        return jsonResponse;
       };
 
       next();

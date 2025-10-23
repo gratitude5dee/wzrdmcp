@@ -28,7 +28,7 @@ export function createPaymentRouter(paymentService: PaymentService, merchantServ
     try {
       const { payment_intent_id, session_id } = req.body;
       const intent = await paymentService.confirmIntent(payment_intent_id);
-      if (session_id) {
+      if (session_id && intent.status === 'succeeded') {
         await merchantService.markCompleted(session_id);
       }
       res.json(
