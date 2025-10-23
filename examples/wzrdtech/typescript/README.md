@@ -4,6 +4,7 @@
 ```bash
 pnpm i # or npm/yarn
 cp .env.example .env && edit .env
+pnpm --filter ./examples/wzrdtech/typescript install
 pnpm --filter ./examples/wzrdtech/typescript build
 pnpm --filter ./examples/wzrdtech/typescript examples -- --slug <one-of-the-slugs-below>
 
