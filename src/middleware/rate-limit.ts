@@ -13,7 +13,7 @@ const STORE = new Map<string, RateLimitEntry>();
 
 export function rateLimitMiddleware(req: Request, res: Response, next: NextFunction) {
   try {
-    const key = req.header('authorization') ?? req.ip;
+    const key = req.header('authorization') ?? req.ip ?? 'unknown';
     const now = Date.now();
     const entry = STORE.get(key);
 
