@@ -12,21 +12,21 @@ import * as fal_ai__mmaudio_v2 from './generated/video-to-video/fal-ai__mmaudio-
 import * as fal_ai__playai__tts__dialog from './generated/text-to-audio/fal-ai__playai__tts__dialog.ts';
 import * as fal_ai__minimax_music__v1_5 from './generated/text-to-audio/fal-ai__minimax-music__v1.5.ts';
 
-type Runner = (customInput?: Record<string, unknown>) => Promise<unknown>;
+type Runner = () => Promise<unknown>;
 
 const registry = new Map<string, Runner>([
-    ['fal-ai/flux-pro/kontext', fal_ai__flux_pro__kontext.run], // image-to-image
-    ['fal-ai/flux/dev/image-to-image', fal_ai__flux__dev__image_to_image.run], // image-to-image
-    ['fal-ai/flux-pro/v1.1-ultra', fal_ai__flux_pro__v1_1_ultra.run], // text-to-image
-    ['fal-ai/recraft/v3/text-to-image', fal_ai__recraft__v3__text_to_image.run], // text-to-image
-    ['fal-ai/kling-video/v2/master/image-to-video', fal_ai__kling_video__v2__master__image_to_video.run], // image-to-video
-    ['fal-ai/wan-effects', fal_ai__wan_effects.run], // image-to-video
-    ['fal-ai/kling-video/v2.5-turbo/pro/text-to-video', fal_ai__kling_video__v2_5_turbo__pro__text_to_video.run], // text-to-video
-    ['fal-ai/veo3/fast', fal_ai__veo3__fast.run], // text-to-video
-    ['bria/video/background-removal', bria__video__background_removal.run], // video-to-video
-    ['fal-ai/mmaudio-v2', fal_ai__mmaudio_v2.run], // video-to-video
-    ['fal-ai/playai/tts/dialog', fal_ai__playai__tts__dialog.run], // text-to-audio
-    ['fal-ai/minimax-music/v1.5', fal_ai__minimax_music__v1_5.run] // text-to-audio
+    ['fal-ai/flux-pro/kontext', () => fal_ai__flux_pro__kontext.run()], // image-to-image
+    ['fal-ai/flux/dev/image-to-image', () => fal_ai__flux__dev__image_to_image.run()], // image-to-image
+    ['fal-ai/flux-pro/v1.1-ultra', () => fal_ai__flux_pro__v1_1_ultra.run()], // text-to-image
+    ['fal-ai/recraft/v3/text-to-image', () => fal_ai__recraft__v3__text_to_image.run()], // text-to-image
+    ['fal-ai/kling-video/v2/master/image-to-video', () => fal_ai__kling_video__v2__master__image_to_video.run()], // image-to-video
+    ['fal-ai/wan-effects', () => fal_ai__wan_effects.run()], // image-to-video
+    ['fal-ai/kling-video/v2.5-turbo/pro/text-to-video', () => fal_ai__kling_video__v2_5_turbo__pro__text_to_video.run()], // text-to-video
+    ['fal-ai/veo3/fast', () => fal_ai__veo3__fast.run()], // text-to-video
+    ['bria/video/background-removal', () => bria__video__background_removal.run()], // video-to-video
+    ['fal-ai/mmaudio-v2', () => fal_ai__mmaudio_v2.run()], // video-to-video
+    ['fal-ai/playai/tts/dialog', () => fal_ai__playai__tts__dialog.run()], // text-to-audio
+    ['fal-ai/minimax-music/v1.5', () => fal_ai__minimax_music__v1_5.run()] // text-to-audio
 ]);
 
 function help() {
